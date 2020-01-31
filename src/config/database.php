@@ -21,6 +21,17 @@ class Database{
         return $connection;
     }
 
+    public static function getResultFromQuery($sql){
+        $connection = self::getConnection();
+
+        $result = $connection->query($sql);
+
+        $connection = null;
+
+        return $result;
+
+    }
+
 }
 
 ?>
