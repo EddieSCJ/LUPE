@@ -1,6 +1,6 @@
 <?php 
 
-include_once(dirname(__FILE__, 2) . "/src/config/database.php");
+include_once(dirname(__FILE__, 2) . "/src/config/config.php");
 
 Database::getConnection();
 
@@ -10,6 +10,6 @@ $result = Database::getResultFromQuery($sql);
 
 while($row = $result->fetch()){
     print_r($row);
-}
+} 
 
 ?>
