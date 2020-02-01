@@ -15,6 +15,9 @@ function loadView($viewName, $params = array()){
     require_once(VIEW_PATH . "/" . $viewName . ".php");
 } 
 
+function loadController($controllerName){
+    require_once(CONTROLLER_PATH . "/" . $controllerName . ".php");
+}
 
 
 

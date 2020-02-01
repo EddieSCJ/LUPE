@@ -9,9 +9,8 @@ if(count($_POST)>0){
     
     try{
         $resultado = $login->LoginExists();
-        var_dump($resultado);
     }catch(Exception $e){
-        echo "Falha no Login";
+        echo $e->getMessage();
     }
     
 }

@@ -1,8 +1,5 @@
 <?php
 
-require_once(dirname(__FILE__) . '/../config/Database.php');
-
-
 class Model
 {
     protected static $tableName = '';
@@ -46,11 +43,10 @@ class Model
         return $objects;
     }
 
-    public static function getOne($columns = '*', $filters = [])
+    public static function getOne($columns="*", $filters = [])
     {
         $class = get_called_class();
         $result = static::getResultFromSelect($columns, $filters);
-        
         return $result ? new $class($result->fetchObject()) : null;
     }
 
