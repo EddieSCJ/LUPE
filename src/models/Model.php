@@ -1,5 +1,8 @@
 <?php
 
+require_once(dirname(__FILE__) . '/../config/Database.php');
+
+
 class Model
 {
     protected static $tableName = '';
@@ -30,34 +33,53 @@ class Model
         $this->values[$key] = $value;
     }
 
-    public static function getSelect($columns = '*', $filters = [])
+    public function getAll($columns= '*', $filters = []){
+        $objects = [];
+        $results = static::getResultFromSelect($columns, $filters);
+        if(!is_null($results)){
+            $class = get_called_class();
+            while($row = $results->fetchObject()){
+                array_push($objects, new $class($row));
+            }
+        }
+        return $objects;
+    }
+
+    private static function getResultFromSelect($columns = '*', $filters = [])
     {
         $sql = " SELECT $columns FROM " . static::$tableName . static::getFilters($filters);
-        return $sql;
+
+        $result = Database::getResultFromQuery($sql);
+        if($result->num_rows===0){
+            return null;
+        }else{
+            return $result;
+        }
     }
 
     private static function getFilters($filters)
     {
         $sql = '';
         if (count($filters) > 0) {
-            $sql.= " WHERE 1 = 1";
+            $sql .= " WHERE 1 = 1";
             foreach ($filters as $key => $value) {
-                $sql.= " AND $key = " . static::getFormated($value);
+                $sql .= " AND $key = " . static::getFormated($value);
             }
         }
-        $sql.=';';
+        $sql .= ';';
 
         return $sql;
     }
 
-    private static function getFormated($value){
-        if(is_string($value)){
-            return "'$value'" ;
-        } elseif(is_null($value)){
+    private static function getFormated($value)
+    {
+
+        if (is_string($value)) {
+            return "'$value'";
+        } elseif (is_null($value)) {
             return "null";
-        }else{
+        } else {
             return "$value";
         }
-       
     }
 }
