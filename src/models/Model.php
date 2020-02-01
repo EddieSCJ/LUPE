@@ -33,16 +33,25 @@ class Model
         $this->values[$key] = $value;
     }
 
-    public function getAll($columns= '*', $filters = []){
+    public function getAll($columns = '*', $filters = [])
+    {
         $objects = [];
         $results = static::getResultFromSelect($columns, $filters);
-        if(!is_null($results)){
+        if (!is_null($results)) {
             $class = get_called_class();
-            while($row = $results->fetchObject()){
+            while ($row = $results->fetchObject()) {
                 array_push($objects, new $class($row));
             }
         }
         return $objects;
+    }
+
+    public static function getOne($columns = '*', $filters = [])
+    {
+        $class = get_called_class();
+        $result = static::getResultFromSelect($columns, $filters);
+        
+        return $result ? new $class($result->fetchObject()) : null;
     }
 
     private static function getResultFromSelect($columns = '*', $filters = [])
@@ -50,9 +59,9 @@ class Model
         $sql = " SELECT $columns FROM " . static::$tableName . static::getFilters($filters);
 
         $result = Database::getResultFromQuery($sql);
-        if($result->num_rows===0){
+        if ($result->num_rows === 0) {
             return null;
-        }else{
+        } else {
             return $result;
         }
     }
