@@ -10,7 +10,11 @@ if(count($_POST)>0){
     );
     
     try{
-        $login->LoginExists();
+        $result = $login->LoginExists();
+        if($result){
+            header('Location: day_records_controller.php');
+            return true;
+        }
     }catch(ValidationException $e){
         $exception = $e;
     }
