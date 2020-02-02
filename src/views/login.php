@@ -27,20 +27,64 @@
                 <i class="icofont-runner-alt-1"></i>
             </div>
             <div class="card-body">
-                <div class="form-group">
-                    <label for="#email"> Email:
-                        <input id="email" type="email" name="email" placeholder="username@email.com" class="form-control" autofocus value = <?= $email ?>>
-                    </label>
+                <?php
+
+use function PHPSTORM_META\type;
+
+include_once(VIEW_PATH . "/template/messages.php"); ?>
+                <div autofocus class="form-group">
+                    <label for="#email"> Email:</label>
+                    <input id="email" type="email" name="email" 
+                    placeholder="username@email.com" 
+                    class="form-control <?php
+                        if($exception !== null ){
+                            if($exception->get('email') !== null){ 
+                                echo 'is-invalid';
+                            }else {
+                                '';
+                            }
+                        }
+                        ?>"
+                        value=<?=$email?> 
+                        >
+                    <div class="invalid-feedback">
+                        <?php
+                        if($exception !== null){
+                            echo $exception->get('email');
+                        }
+                        ?>
+                    </div>  
+                    
                 </div>
                 <div class="form-group">
                     <label for="#password"> Password:
-                        <input id="password" type="password" name="password" placeholder="*******" class="form-control">
+                        <input id="password" 
+                        type="password" 
+                        name="password" 
+                        placeholder="*******" 
+                        class="form-control 
+                        <?php
+                        if($exception !== null){
+                            if($exception->get('password') !== null){ 
+                                echo 'is-invalid';
+                            }else {
+                                '';
+                            }
+                        }
+                        ?>">
+                    <div class="invalid-feedback">
+                        <?php
+                         if($exception !== null){
+                            echo $exception->get('password');
+                        }
+                        ?>
+                    </div>
                     </label>
                 </div>
 
             </div>
             <div class="card-footer">
-                    <button class="btn btn-outline-primary btn-sm">Login</button>
+                <button class="btn btn-outline-primary btn-sm">Login</button>
             </div>
         </div>
 
