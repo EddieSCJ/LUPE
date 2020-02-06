@@ -17,11 +17,17 @@
 
 <body>
     <header class="header">
-    <div class="logo">
+        <div class="logo">
             <i class="icofont-travelling"></i>
             <span class="font-weight-light">Lived</span>
             <span class="font-weight-bold">UP</span>
             <span class="font-weight-light">Ponto Eletrônico</span>
             <i class="icofont-runner-alt-1"></i>
         </div>
+        <div class="menu-toggle mx-3">
+            <i class="icofont-navigation-menu"></i>
+        </div>
+        <div class="spacer">
+        </div>
     </header>
+    
