@@ -1,14 +1,17 @@
 body {
     height: 100vh;
-    width: 100vw;
     display: grid;
-    grid-template-areas: "header header" "sidebar content" "footer footer";
+    grid-template-areas: "header header" "sidebar content" "sidebar footer";
     grid-template-columns: 200px 1fr;
     grid-template-rows: 50px 1fr 50px;
     background-color: #DDD;
 }
 
 header.header {
+    position: fixed;
+    height: 50px;
+    width: 100%;
+    top: 0;
     grid-area: header;
     display: flex;
     flex-direction: row;
@@ -16,6 +19,7 @@ header.header {
     align-items: center;
     background-color: #1976d2;
     color: white;
+    z-index: 1000;
     -webkit-box-shadow: 0px 1px 32px 7px rgba(0, 0, 0, 0.53);
     -moz-box-shadow: 0px 1px 32px 7px rgba(0, 0, 0, 0.53);
     box-shadow: 0px 1px 32px 7px rgba(0, 0, 0, 0.53);
@@ -66,6 +70,8 @@ header.header .dropdown:hover .dropdown-content {
 }
 
 footer.footer {
+    position: sticky;
+    bottom: 0;
     color: white;
     display: flex;
     justify-content: center;
@@ -80,7 +86,6 @@ main.content {
 }
 
 aside.sidebar {
-
     grid-area: sidebar;
     background-color: rgb(255, 255, 255);
     display: flex;
@@ -93,8 +98,41 @@ aside.sidebar {
 }
 
 aside.sidebar .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     flex: 1;
+}
+
+aside.sidebar .menu .nav-list{
+    position: sticky;
+    top: 70px;
+}
+
+.sidebar-widgets {
+    position: sticky;
+    bottom: 10px;
+}
+
+.sidebar-widget {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-widget .label {
+    display: flex;
+    flex-direction: column;
+    margin-top: -.4rem;
+}
+
+.hour {
+    font-size: 3.5rem;
+    margin-left: -3rem;
+}
+
+.info .main {
+    font-size: 1.7rem;
 }
 
 aside.sidebar li {
@@ -123,3 +161,7 @@ body.hidesidebar {
     grid-template-areas: "header" "content" "footer";
 }
 
+.division {
+    width: 100%;
+    border: .5px solid rgba(80, 80, 80, 0.164);
+}

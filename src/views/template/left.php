@@ -2,7 +2,7 @@
     <nav class="menu mt-3">
         <ul class="nav-list">
             <li class="nav-item">
-                <a href="<?= CONTROLLER_PATH . "/day_records_controller.php" ?>" >
+                <a href="<?= CONTROLLER_PATH . "/day_records_controller.php" ?>">
                     <i class="icofont-ui-check mr-2">
                         Registrar Ponto
                     </i>
@@ -30,5 +30,30 @@
                 </a>
             </li>
         </ul>
+        <div class="spacer"></div>
+        <div class="sidebar-widgets">
+            <div class="sidebar-widget">
+                <i class="hour icofont-hour-glass text-primary"></i>
+                <div class="info">
+                    <span class="main text-primary">
+                        04:23:00
+                    </span>
+                    <span class="label text-mute">Horas trabalhadas</span>
+                </div>
+            </div>
+            <div class="division my-1"></div>
+            <div class="sidebar-widget">
+                <i class="hour icofont-hour-glass text-danger"></i>
+                <div class="info">
+                    <span class="main text-danger">
+                        18:23:00
+                    </span>
+                    <span class="label text-mute">Horário de saída :/</span>
+                </div>
+            </div>
+        </div>
+        
+        
     </nav>
+
 </aside>
