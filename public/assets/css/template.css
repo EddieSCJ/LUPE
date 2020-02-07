@@ -81,8 +81,57 @@ footer.footer {
 }
 
 main.content {
+    background-color: white;
+    margin: 15px;
+    padding: 20px;
     grid-area: content;
-    z-index: 10;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 64px -20px rgba(0, 0, 0, 0.36);
+    -moz-box-shadow: 0px 0px 64px -20px rgba(0, 0, 0, 0.36);
+    box-shadow: 0px 0px 64px -20px rgba(0, 0, 0, 0.36);
+    z-index: 0;
+}
+
+main.content .content-title {
+    display: flex;
+    padding-bottom: 10px;
+    align-items: center;
+    border-bottom: 1px solid rgb(201, 201, 201);
+}
+
+main.content .content-title i {
+    font-size: 3rem;
+    font-weight: bold;
+    color: green;
+}
+
+main.content .content-title h1 {
+    color: #444;
+    font-weight: 300;
+    margin:0;
+    font-size: 1.8rem;
+}
+
+main.content .content-title h2 {
+    color: #888;
+    font-weight: 300;
+    margin:0;
+    font-size: 1.2rem;
+}
+
+
+main.content .card-header h3{
+    font-weight: 400;
+}
+
+main.content .card-header{
+    font-weight: 300;
+    color: #444;
+    font-size: 1.6rem;
+}
+
+main.content .card-body{
+    font-size: 1.4rem;
 }
 
 aside.sidebar {
@@ -105,7 +154,7 @@ aside.sidebar .menu {
     flex: 1;
 }
 
-aside.sidebar .menu .nav-list{
+aside.sidebar .menu .nav-list {
     position: sticky;
     top: 70px;
 }

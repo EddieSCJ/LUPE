@@ -9,14 +9,14 @@
     <div class="card">
         <div class="card-header">
             <h3>10 de Janeiro de 2025</h3>
-            <p>Os batientos efetutuados hoje</p>
+            <p>Os batimentos efetutuados hoje</p>
         </div>
         <div class="card-body ">
-            <div class="d-flex m-5 justify-content-around">
+            <div class="d-flex m-3 justify-content-around">
                 <span>Entrada 1: ----</span>
                 <span>Saída 1: ----</span>
             </div>
-            <div class="d-flex m-5 justify-content-around">
+            <div class="d-flex m-3 justify-content-around">
                 <span>Entrada 2: ----</span>
                 <span>Saída 2: ----</span>
             </div>
