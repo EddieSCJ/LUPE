@@ -34,6 +34,10 @@ function loadController($controllerName){
     require_once(CONTROLLER_PATH . "/" . $controllerName . ".php");
 }
 
+function render_title($title, $subtitle, $icon=null){
+    require_once(TEMPLATE_PATH . "/title.php");
+
+}
 
 
 

@@ -1,14 +1,11 @@
 <main class="content">
-    <div class="content-title mb-4">
-        <i class="icon icofont-check-alt mr-2"></i>
-        <div>
-            <h1>Registrar ponto</h1>
-            <h2>Mantenha seu ponto consistente</h2>
-        </div>
-    </div>
+    <?php
+    render_title("Registrar Ponto", "Mantenha o seu ponto consistente", "icofont-check-alt");
+    include_once(TEMPLATE_PATH . "/messages.php");
+    ?>
     <div class="card">
         <div class="card-header">
-            <h3>10 de Janeiro de 2025</h3>
+            <h3><?= $today ?></h3>
             <p>Os batimentos efetutuados hoje</p>
         </div>
         <div class="card-body ">
