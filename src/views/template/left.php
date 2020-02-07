@@ -2,7 +2,7 @@
     <nav class="menu mt-3">
         <ul class="nav-list">
             <li class="nav-item">
-                <a href="day_records.php">
+                <a href="<?= CONTROLLER_PATH . "/day_records_controller.php" ?>" >
                     <i class="icofont-ui-check mr-2">
                         Registrar Ponto
                     </i>
