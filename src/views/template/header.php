@@ -28,12 +28,14 @@
             <i class="icofont-runner-alt-1"></i>
         </div>
         <div class="spacer"></div>
-        <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Usuário Mock
+        <div class="dropdown d-flex justify-content-center align-items-center">
+            <i class="icofont-toggle-off"></i>
+            <button class="btn dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <?= $_SESSION['user']->name ?>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="logout.php">Sair</a>
+
+                <a class="dropdown-item" href="logout_controller.php"><i class="icofont-logout">Sair</i></a>
             </div>
         </div>
         <div class="menu-toggle mx-3 escondedor-btn">

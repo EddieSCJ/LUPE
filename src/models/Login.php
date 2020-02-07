@@ -30,7 +30,7 @@ Class Login extends Model{
                 throw new ValidationException([], "Usuário desligado da empresa");
             }
             if(password_verify($this->password, $user->password)){
-                return true;
+                return $user;
             }else{
                 throw new ValidationException([], 'Senha incorreta');
             }

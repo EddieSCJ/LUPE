@@ -134,6 +134,10 @@ main.content .card-body{
     font-size: 1.4rem;
 }
 
+.icofont-toggle-off{
+    font-size: 2.5rem;
+}
+
 aside.sidebar {
     grid-area: sidebar;
     background-color: rgb(255, 255, 255);
