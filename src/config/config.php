@@ -9,8 +9,10 @@ define('VIEW_PATH', realpath(dirname(__FILE__) .  '/../views'));
 define('TEMPLATE_PATH', realpath(dirname(__FILE__) .  '/../views/template'));
 define('CONTROLLER_PATH', realpath(dirname(__FILE__) .  '/../controllers'));
 define('EXCEPTION_PATH', realpath(dirname(__FILE__) .  '/../exceptions'));
+define('DAILY_TIME', 60*60*8);
 
 require_once(realpath(dirname(__FILE__) . '/Database.php'));
+require_once(realpath(dirname(__FILE__) . '/utils.php'));
 require_once(realpath(dirname(__FILE__) . '/loader.php'));
 require_once(realpath(dirname(__FILE__) . '/session.php'));
 require_once(realpath(EXCEPTION_PATH . '/AppException.php'));

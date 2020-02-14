@@ -29,7 +29,16 @@ class Database{
         $connection = null;
 
         return $result;
+    }
 
+    public static function executeSQL($sql, $table_name){
+        $conn = self::getConnection();
+        if(!pg_query($conn, $sql)){
+            throw new Exception(pg_errormessage($conn));
+        }
+        $id = $conn->lastInsertId($table_name);
+        $conn = null;
+        return $id;
     }
 
 }
