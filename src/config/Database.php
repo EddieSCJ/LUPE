@@ -33,9 +33,11 @@ class Database{
 
     public static function executeSQL($sql, $table_name){
         $conn = self::getConnection();
-        if(!pg_query($conn, $sql)){
+        
+        if($conn->query($sql) === null){
             throw new Exception(pg_errormessage($conn));
         }
+        echo $sql ."<br>";
         $id = $conn->lastInsertId($table_name);
         $conn = null;
         return $id;

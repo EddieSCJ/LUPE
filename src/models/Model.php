@@ -20,6 +20,20 @@ class Model
         }
     }
 
+    public function save(){
+      
+        $sql =  "INSERT INTO " . static::$tableName . " (" . 
+        implode(',', static::$columns) . ") VALUES (" ;
+        foreach(static::$columns as $col){
+            $sql.= static::getFormated($this->$col) . ", ";
+        }
+    
+        $sql[strlen($sql)-2] = ")";
+
+        $id = Database::executeSQL($sql, self::$tableName);
+        return $id;
+    }
+
     public function __get($key)
     {
         return $this->values[$key];
