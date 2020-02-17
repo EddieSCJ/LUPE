@@ -218,3 +218,13 @@ body.hidesidebar {
     width: 100%;
     border: .5px solid rgba(80, 80, 80, 0.164);
 }
+
+.entrada{
+
+    color: rgb(23, 139, 23);
+}
+
+.saida{
+    color: rgb(172, 20, 20);
+
+}
