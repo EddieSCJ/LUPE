@@ -34,6 +34,15 @@ class Model
         return $id;
     }
 
+    public function update(){
+        $sql = "UPDATE" . static::$tableName . "SET";
+        foreach(static::$columns as $col){
+            $sql.= " ${col} = " . static::getFormated($this->$col) . ",";
+        }
+        $sql[strlen($sql)-2] = "WHERE id = " . $this->id . ";";
+        Database::executeSQL($sql, static::$tableName);
+    }
+
     public function __get($key)
     {
         return $this->values[$key];
