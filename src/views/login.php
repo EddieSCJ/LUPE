@@ -29,56 +29,51 @@
             <div class="card-body">
                 <?php
 
-use function PHPSTORM_META\type;
+                use function PHPSTORM_META\type;
 
-include_once(VIEW_PATH . "/template/messages.php"); ?>
+                include_once(VIEW_PATH . "/template/messages.php"); ?>
                 <div autofocus class="form-group">
                     <label for="#email"> Email:</label>
                     <input id="email" type="email" name="email" 
-                    placeholder="username@email.com" 
-                    class="form-control <?php
-                        if($exception !== null ){
-                            if($exception->get('email') !== null){ 
-                                echo 'is-invalid';
-                            }else {
-                                '';
-                            }
+                    placeholder="username@email.com" class="form-control 
+                    <?php
+                    if ($exception !== null) {
+                        if ($exception->get('email') !== null) {
+                            echo 'is-invalid';
+                        } else {
+                            '';
                         }
-                        ?>"
-                        value=<?=$email?> 
-                        >
+                    }
+                    ?>" value=<?= $email ?>
+                    >
                     <div class="invalid-feedback">
                         <?php
-                        if($exception !== null){
+                        if ($exception !== null) {
                             echo $exception->get('email');
                         }
                         ?>
-                    </div>  
-                    
+                    </div>
+
                 </div>
                 <div class="form-group">
                     <label for="#password"> Password:
-                        <input id="password" 
-                        type="password" 
-                        name="password" 
-                        placeholder="*******" 
-                        class="form-control 
+                        <input id="password" type="password" name="password" placeholder="*******" class="form-control 
                         <?php
-                        if($exception !== null){
-                            if($exception->get('password') !== null){ 
+                        if ($exception !== null) {
+                            if ($exception->get('password') !== null) {
                                 echo 'is-invalid';
-                            }else {
+                            } else {
                                 '';
                             }
                         }
                         ?>">
-                    <div class="invalid-feedback">
-                        <?php
-                         if($exception !== null){
-                            echo $exception->get('password');
-                        }
-                        ?>
-                    </div>
+                        <div class="invalid-feedback">
+                            <?php
+                            if ($exception !== null) {
+                                echo $exception->get('password');
+                            }
+                            ?>
+                        </div>
                     </label>
                 </div>
 

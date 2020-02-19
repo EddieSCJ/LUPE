@@ -23,4 +23,5 @@ function getNextDay($date1){
     return $inputDate1; 
 }
 
+
 ?>

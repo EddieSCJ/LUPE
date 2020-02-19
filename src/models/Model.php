@@ -35,12 +35,13 @@ class Model
     }
 
     public function update(){
-        $sql = "UPDATE" . static::$tableName . "SET";
+        $sql = "UPDATE " . static::$tableName . " SET";
         foreach(static::$columns as $col){
             $sql.= " ${col} = " . static::getFormated($this->$col) . ",";
         }
-        $sql[strlen($sql)-2] = "WHERE id = " . $this->id . ";";
-        Database::executeSQL($sql, static::$tableName);
+        $sql[strlen($sql)-1] = " ";
+        $sql .= "WHERE id = " . $this->id . ";";
+        $id = Database::executeSQL($sql, static::$tableName);
     }
 
     public function __get($key)
@@ -78,9 +79,10 @@ class Model
         $sql = " SELECT $columns FROM " . static::$tableName . static::getFilters($filters);
 
         $result = Database::getResultFromQuery($sql);
-        if ($result->num_rows === 0) {
+        if ($result->rowCount() == null) {
             return null;
         } else {
+
             return $result;
         }
     }
@@ -107,7 +109,7 @@ class Model
         } elseif (is_null($value)) {
             return "null";
         } else {
-            return "$value";
+            return "'$value'";
         }
     }
 }

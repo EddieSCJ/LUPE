@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="card-footer d-flex justify-content-center align-items-center">
-            <a href="???" class="btn btn-success btn-md">
+            <a href="point_controller.php" class="btn btn-success btn-md">
                 <i class="icofont-check mr-1">Bater o ponto</i>
             </a>
         </div>

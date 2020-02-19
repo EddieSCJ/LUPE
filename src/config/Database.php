@@ -25,7 +25,6 @@ class Database{
         $connection = self::getConnection();
 
         $result = $connection->query($sql);
-
         $connection = null;
 
         return $result;
@@ -33,8 +32,9 @@ class Database{
 
     public static function executeSQL($sql, $table_name){
         $conn = self::getConnection();
-        
-        if($conn->query($sql) === null){
+
+        if($conn->query($sql) == null){
+
             throw new Exception(pg_errormessage($conn));
         }
         echo $sql ."<br>";
