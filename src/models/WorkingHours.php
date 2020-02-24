@@ -33,6 +33,14 @@ class WorkingHours extends Model{
         if(!$this->time4) return 'time4'; 
         return null;
     }
+
+    public function getActiveClock(){
+        $nextTime = $this->getNextTime();
+        if($nextTime=='time1' or $nextTime == 'time3') return 'exitTime';
+        if($nextTime=='time2' or $nextTime == 'time4') return 'workTime';
+        return 'stop';
+    
+    }
  
     public function batimento($time) {
         
@@ -58,9 +66,8 @@ class WorkingHours extends Model{
 
         if($times[0]) $period1 = $times[0]->diff(new DateTime()); 
         if($times[1]) $period1 = $times[1]->diff($times[0]);
-        if($times[2]) $period2 = $times[2]->diff(new DateTime()); 
+        if($times[2]) $period2 = (new DateTime())->diff($times[2]); 
         if($times[3]) $period2 = $times[3]->diff($times[2]); 
-        
         return sumInterval($period1, $period2);
     }
 
@@ -70,9 +77,9 @@ class WorkingHours extends Model{
         $lunch = new DateInterval('PT0S');
         
         if($times[1]){
-            $lunch = $times[1]->diff(new DateTime());
+            $lunch = (new DateTime())->diff($times[1]);
             if($times[2]){
-                $lunch = $times[2]->diff($times[1]);
+                $lunch = $times[1]->diff($times[2]);
             }
         }
 

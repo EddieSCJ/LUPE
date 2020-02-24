@@ -3,12 +3,14 @@
         <span><i class="icofont-heart text-danger mx-1"></i></span>
         <span>por Eddie</span>
     </footer>
+    <script src="assets/js/clock.js">
+    </script>
     <script>
-        $('.escondedor-btn').on('click', ()=>{
-            if($('body').hasClass('hidesidebar')){
+        $('.escondedor-btn').on('click', () => {
+            if ($('body').hasClass('hidesidebar')) {
                 $('body').removeClass('hidesidebar');
                 $('.sidebar').show();
-            }else{
+            } else {
                 $('body').addClass('hidesidebar');
                 $('.sidebar').hide();
             }

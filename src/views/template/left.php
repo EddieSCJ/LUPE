@@ -3,6 +3,8 @@ loadModel("WorkingHours");
 session_start();
 $user = $_SESSION['user'];
 $wh = WorkingHours::loadFromUserAndData($user->id, date('Y-m-d'));
+$activeClock = $wh->getActiveClock();
+
 ?>
 
 <aside class="sidebar">
@@ -42,9 +44,13 @@ $wh = WorkingHours::loadFromUserAndData($user->id, date('Y-m-d'));
             <div class="sidebar-widget">
                 <i class="hour icofont-hour-glass text-primary"></i>
                 <div class="info">
-                    <span class="main text-primary">
+                    <span class="main text-primary"
                         <?php
-                        echo $wh->getWorkedInterval()->format("%H:%i:%s");
+                        echo $activeClock=='workTime' ? 'active-Clock' : '';
+                        ?>
+                    >
+                        <?php
+                        echo $wh->getWorkedInterval()->format("%H:%I:%S");
                         ?>
                     </span>
                     <span class="label text-mute">Horas trabalhadas</span>
@@ -54,7 +60,11 @@ $wh = WorkingHours::loadFromUserAndData($user->id, date('Y-m-d'));
             <div class="sidebar-widget">
                 <i class="hour icofont-hour-glass text-danger"></i>
                 <div class="info">
-                    <span class="main text-danger">
+                    <span class="main text-danger" 
+                    <?php
+                    echo $activeClock=='exitTime' ? 'active-clock' : '';
+                    ?>
+                    >
                         <?php
                         echo $wh->getExitTime()->format("H:i:s");
                         ?>
