@@ -9,6 +9,11 @@ $user = $_SESSION['user'];
 
 $records = WorkingHours::loadFromUserAndData($user->id, date('Y-m-d'));
 $currentTime = strftime('%H:%M:%S', time());
+
+if($_POST['batimento_forcado']){
+    $currentTime = $_POST['batimento_forcado'];
+}
+
 try{
     $records->batimento($currentTime);
     $_SESSION['message'] = [

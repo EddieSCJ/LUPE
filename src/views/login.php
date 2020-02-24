@@ -8,7 +8,11 @@
 
     <link rel="stylesheet" href="assets/css/comum.css">
     <link rel="stylesheet" href="assets/css/icofont.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/login.css">
 
     <title>LUPE</title>
@@ -29,13 +33,10 @@
             <div class="card-body">
                 <?php
 
-                use function PHPSTORM_META\type;
-
                 include_once(VIEW_PATH . "/template/messages.php"); ?>
                 <div autofocus class="form-group">
                     <label for="#email"> Email:</label>
-                    <input id="email" type="email" name="email" 
-                    placeholder="username@email.com" class="form-control 
+                    <input id="email" type="email" name="email" placeholder="username@email.com" class="form-control 
                     <?php
                     if ($exception !== null) {
                         if ($exception->get('email') !== null) {
@@ -44,8 +45,7 @@
                             '';
                         }
                     }
-                    ?>" value=<?= $email ?>
-                    >
+                    ?>" value=<?= $email ?>>
                     <div class="invalid-feedback">
                         <?php
                         if ($exception !== null) {
