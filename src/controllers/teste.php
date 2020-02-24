@@ -1,11 +1,12 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_erros', 1);
+error_reporting(E_ALL);
+loadModel("WorkingHours");
 
-$i1 = DateInterval::createFromDateString("9 hours");
-$i2 = DateInterval::createFromDateString("6 hours");
+$workingHours = WorkingHours::loadFromUserAndData(1, date("Y-m-d"));
 
-$sr1 = sumInterval($i1, $i2);
-$sr2 = subtractInterval($i1, $i2);
+$workedHours = $workingHours->getWorkedInterval()->format("%H:%i:%s");
+echo $workedHours;
 
-print_r(intervalToDate($sr1));
-
-?> 
+?>
