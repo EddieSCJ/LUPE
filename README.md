@@ -4,9 +4,39 @@ LUPE, Leved Up Ponto Eletrônico é um projeto de verificação de ponto eletrô
   
 ## Primeiro projeto com PHP
 
-Olá, este é o meu primeiro projeto realizado na linguagem PHP, sendo desenvolvido junto ao curso de [PHP 7](https://www.udemy.com/course/php-7-completo/) no qual pretendo reaproveitar códigos para construção do meu TCC.
+Olá, este é o meu primeiro projeto realizado na linguagem PHP, sendo que pretendo reaproveitar códigos para construção do meu TCC.
 
 ## O projeto exige algumas configurações
 
-* Que você configure o seu DocumentRoot no apache para a pasta public do sistema
-* Que você habilite o uso de .htacess no seu arquivo 000conf ou http.conf.
+1. Que você configure o seu DocumentRoot no apache para a pasta public do sistema (O LUPE)
+      	
+       DocumentRoot /SEU/DIRETORIO_DE/PASTAS_WEB/LUPE/public 
+          
+2. Que você habilite o uso de .htacess no seu arquivo (Linux): 
+     2.1 Arquivo apache2.conf em /etc/apache2/apache2.conf 
+      ```
+         <Directory /var/www/>
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride All
+            Order allow,deny
+            allow from all
+         </Directory>
+      ```
+     2.2 Digite no terminal o comando:
+       
+        sudo a2enmod rewrite
+     
+     2.3 Digite no terminal o comando 
+        
+        sudo service apache2 restart
+  
+  ou (Windows):
+     
+   1. http.conf:
+    
+           <Directory /var/www/>
+              Options Indexes FollowSymLinks MultiViews
+              AllowOverride All
+              Order allow,deny
+              allow from all
+           </Directory>
