@@ -1,8 +1,15 @@
+<?php
+loadModel("WorkingHours");
+session_start();
+$user = $_SESSION['user'];
+$wh = WorkingHours::loadFromUserAndData($user->id, date('Y-m-d'));
+?>
+
 <aside class="sidebar">
     <nav class="menu mt-3">
         <ul class="nav-list">
             <li class="nav-item">
-                <a href="<?="day_records_controller.php" ?>">
+                <a href="<?= "day_records_controller.php" ?>">
                     <i class="icofont-ui-check mr-2">
                         Registrar Ponto
                     </i>
@@ -36,7 +43,9 @@
                 <i class="hour icofont-hour-glass text-primary"></i>
                 <div class="info">
                     <span class="main text-primary">
-                        04:23:00
+                        <?php
+                        echo $wh->getWorkedInterval()->format("%H:%i:%s");
+                        ?>
                     </span>
                     <span class="label text-mute">Horas trabalhadas</span>
                 </div>
@@ -46,14 +55,16 @@
                 <i class="hour icofont-hour-glass text-danger"></i>
                 <div class="info">
                     <span class="main text-danger">
-                        18:23:00
+                        <?php
+                        echo $wh->getExitTime()->format("H:i:s");
+                        ?>
                     </span>
                     <span class="label text-mute">Horário de saída :/</span>
                 </div>
             </div>
         </div>
-        
-        
+
+
     </nav>
 
 </aside>

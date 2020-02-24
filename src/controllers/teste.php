@@ -6,7 +6,7 @@ loadModel("WorkingHours");
 
 $workingHours = WorkingHours::loadFromUserAndData(1, date("Y-m-d"));
 
-$lunch = $workingHours->getBreakInterval()->format("%H:%i:%s");
+$lunch = $workingHours->getWorkedInterval()->format("%H:%i:%s");
 echo $lunch;
 
 ?>

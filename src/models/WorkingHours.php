@@ -60,7 +60,7 @@ class WorkingHours extends Model{
         if($times[1]) $period1 = $times[1]->diff($times[0]);
         if($times[2]) $period2 = $times[2]->diff(new DateTime()); 
         if($times[3]) $period2 = $times[3]->diff($times[2]); 
-
+        
         return sumInterval($period1, $period2);
     }
 
@@ -100,6 +100,18 @@ class WorkingHours extends Model{
         : array_push($times, null);
 
         return $times;
+    }
+
+    public function getExitTime(){
+        $times = $this->getTimes();
+        $workDay = new DateInterval("PT8H");
+        if(!$times[0]){
+            return (new DateTimeImmutable())->add($workDay);
+        }elseif($times[3]){
+            return $times[3];
+        }else{
+            return $times[0]->add(sumInterval($workDay, $this->getBreakInterval()));
+        }
     }
     
 }
