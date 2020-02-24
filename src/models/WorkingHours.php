@@ -70,7 +70,7 @@ class WorkingHours extends Model{
         $lunch = new DateInterval('PT0S');
         
         if($times[1]){
-            $lunch = $times[2]->diff(new DateTime());
+            $lunch = $times[1]->diff(new DateTime());
             if($times[2]){
                 $lunch = $times[2]->diff($times[1]);
             }
