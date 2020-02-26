@@ -20,26 +20,28 @@ class Model
         }
     }
 
-    public function save(){
-      
-        $sql =  "INSERT INTO " . static::$tableName . " (" . 
-        implode(',', static::$columns) . ") VALUES (" ;
-        foreach(static::$columns as $col){
-            $sql.= static::getFormated($this->$col) . ", ";
+    public function save()
+    {
+
+        $sql =  "INSERT INTO " . static::$tableName . " (" .
+            implode(',', static::$columns) . ") VALUES (";
+        foreach (static::$columns as $col) {
+            $sql .= static::getFormated($this->$col) . ", ";
         }
-    
-        $sql[strlen($sql)-2] = ")";
+
+        $sql[strlen($sql) - 2] = ")";
 
         $id = Database::executeSQL($sql, self::$tableName);
         return $id;
     }
 
-    public function update(){
+    public function update()
+    {
         $sql = "UPDATE " . static::$tableName . " SET";
-        foreach(static::$columns as $col){
-            $sql.= " ${col} = " . static::getFormated($this->$col) . ",";
+        foreach (static::$columns as $col) {
+            $sql .= " ${col} = " . static::getFormated($this->$col) . ",";
         }
-        $sql[strlen($sql)-1] = " ";
+        $sql[strlen($sql) - 1] = " ";
         $sql .= "WHERE id = " . $this->id . ";";
         $id = Database::executeSQL($sql, static::$tableName);
     }
@@ -67,7 +69,7 @@ class Model
         return $objects;
     }
 
-    public static function getOne($columns="*", $filters = [])
+    public static function getOne($columns = "*", $filters = [])
     {
         $class = get_called_class();
         $result = static::getResultFromSelect($columns, $filters);
@@ -93,7 +95,11 @@ class Model
         if (count($filters) > 0) {
             $sql .= " WHERE 1 = 1";
             foreach ($filters as $key => $value) {
-                $sql .= " AND $key = " . static::getFormated($value);
+                if ($key == 'value') {
+                    $sql = "AND {$value}";
+                } else {
+                    $sql .= " AND $key = " . static::getFormated($value);
+                }
             }
         }
         $sql .= ';';

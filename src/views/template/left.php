@@ -18,7 +18,7 @@ $activeClock = $wh->getActiveClock();
                 </a>
             </li>
             <li class="nav-item">
-                <a href=".php">
+                <a href="monthly_report_controller.php">
                     <i class="icofont-ui-calendar mr-2">
                         Relatório Mensal
                     </i>

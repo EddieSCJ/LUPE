@@ -46,4 +46,10 @@ function stringToDate($string){
     return DateTimeImmutable::createFromFormat('H:i:s', $string);
 }
 
+function getLastDayOfMonthh($date){
+    $date = getDateAsDateTime($date)->getTimestamp();
+    return date('Y-m-t', $date);
+
+}
+
 ?>
