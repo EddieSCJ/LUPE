@@ -113,7 +113,7 @@ class Model
         } elseif (is_null($value)) {
             return "null";
         } else{
-            return "'$value'";
+            return number_format($value, 2, '.', '');
         }
     }
 }

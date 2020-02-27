@@ -50,6 +50,10 @@ class WorkingHours extends Model{
             throw new AppException("Você já realizou os 4 batimentos do dia!");
         }
         $this->$timeColumn = $time;
+        $d1 = new DateTimeImmutable();
+        $d2 = (new DateTime())->add($this->getWorkedInterval());
+        
+        $this->worked_time = ($d1->getTimestamp() - $d2->getTimestamp()) ;
 
         if($this->id){
             $this->update(); 
