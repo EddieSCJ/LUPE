@@ -8,7 +8,7 @@
     prepareDataToVisu($monthly_reports, $total_worked_time);
 
     ?>
-    <div>
+    <div class="table-content">
         <table id="monthly_report" class="table table-striped table-bordered table-light">
             <thead>
                 <th>Dia</th>

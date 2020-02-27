@@ -241,10 +241,35 @@ table.dataTable tbody tr{
 }
 
 .table-light.table-striped tbody tr:nth-of-type(odd){
-    background-color: #1976d2;
+    background-color: #0a94a7;
     color: white;
 }
 
 #monthly_work_result{
     color: white;
+}
+[name="monthly_report_length"]{
+    border-radius: 50px;
+    text-align: center;
+    background-color: white;
+}
+
+[type="search"]{
+    border-radius: 50px;
+
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+    border-radius: 50px;
+    color: white !important;
+    background-color: #0a94a7 !important;
+    background: none;
+    transition: 2s ease;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+    border-radius: 50px;
+    border: none;
+    background-color: #07a02d !important;
+    background: none;
 }

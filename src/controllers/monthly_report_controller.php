@@ -23,16 +23,15 @@ for ($day = 1; $day <= $lastDay; $day++) {
 
     if (isPastWorkDay($date)) {
         $worked_days++;
-
-        if ($registry) {
-            $sum_of_worked_time += $registry->worked_time;
-            array_push($report, $registry);
-        } else {
-            array_push($report, new WorkingHours([
-                'work_date' => $date,
-                'worked_time' => 0,
-            ]));
-        }
+    }
+    if ($registry) {
+        $sum_of_worked_time += $registry->worked_time;
+        array_push($report, $registry);
+    } else {
+        array_push($report, new WorkingHours([
+            'work_date' => $date,
+            'worked_time' => 0,
+        ]));
     }
 }
 
