@@ -1,13 +1,48 @@
 <main class="content">
     <?php
-    render_title(
-        "Relatório Mensal",
-        "Acompanhe seu saldo de horas",
-        "icofont-ui-calendar"
-    );
     prepareDataToVisu($monthly_reports, $total_worked_time);
 
+    $userVisibleAll = (new User([]))->getOne("name, id", ["id" => $selectedUser]);
+
     ?>
+
+    <div class="filter-title mb-4">
+        <div class="title-pack">
+            <div class="icon-title">
+                <i class="icon icofont-ui-calendar mr-2"></i>
+                <h1> Relatório Mensal </h1>
+            </div>
+            <div class="subtitle">
+                <h2>Acompanhe seu saldo de horas</h2>
+            </div>
+        </div>
+        <div class="form-filter">
+            <div class="container">
+                <form class="mb-1" action="#" method="POST">
+                    <div class="row">
+                        <select name="periods" class="custom-select col-5 mx-1" id="periods">
+                            <option value="<?= $selectedPeriod ?>"> <?= utf8_encode(ucfirst(strftime("%B de %Y", (new DateTime($selectedPeriod))->getTimestamp()))) ?> </option>
+                            <?php foreach ($periods as $key => $value) : ?>
+                                <?php if ($key != $selectedPeriod) : ?>
+                                    <option value="<?= $key ?>"> <?= $value ?> </option>
+                                <?php endif ?>
+                            <?php endforeach ?>
+                        </select>
+                        <select name="selectedUser" class="custom-select col-4 mx-1" id="users">
+                            <option value="<?= $userVisibleAll->id ?>"> <?= $userVisibleAll->name ?> </option>
+                            <?php foreach ($users as $user) : ?>
+                                <?php if ($userVisibleAll->id != $user->id) : ?>
+                                    <option value="<?= $user->id ?>"> <?= $user->name ?> </option>
+                                <?php endif ?>
+                            <?php endforeach ?>
+                        </select>
+                        <button class = "col-2 mx-1 send-filter btn btn-outline-success" type="submit">Filtrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="table-content">
         <table id="monthly_report" class="table table-striped table-bordered table-light">
             <thead>

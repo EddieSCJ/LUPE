@@ -95,7 +95,6 @@ class WorkingHours extends Model{
         $registries = [];
         $startDate = getFirstDayOfMonthh($date)->format('Y-m-d');
         $endDate = getLastDayOfMonthh($date)->format('Y-m-d');
-
         $result = static::getResultFromSelect('*', [
             'user_id' => $userId,
             'raw' => "work_date between '{$startDate}' AND '{$endDate}'"

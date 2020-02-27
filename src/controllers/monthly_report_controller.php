@@ -1,26 +1,47 @@
 <?php
-// ini_set('display_errors',1);
-// ini_set('display_startup_erros',1);
-// error_reporting(E_ALL);
-
 session_start();
 requireValidSession();
 
+loadModel("User");
+
 $user = $_SESSION['user'];
 
-$wh =  WorkingHours::loadFromUserAndData(1, (new DateTime())->format('Y-m-d'));
+$selectedUser = $_POST['selectedUser']  ? $_POST['selectedUser'] : $user->id;
 
-$registries = $wh->getMonthlyReport($user->id, (new DateTime())->format('Y-m-d'));
+$wh =  WorkingHours::loadFromUserAndData($selectedUser, (new DateTime())->format('Y-m-d'));
+
+$periods = [];
+$selectedPeriod = $_POST['periods'] ? $_POST['periods'] : (new DateTime())->format("Y-m");
+$selectedPeriod = explode("-" , $selectedPeriod);
+$selectedPeriod = sprintf("%02d-%02d", $selectedPeriod[0], $selectedPeriod[1]);
+$user = new User([]);
+$users = $user->getAll("name, id");
+
+for($yearDiff = 0; $yearDiff<=10; $yearDiff++){
+    $year = date("Y")-$yearDiff;
+    for($month = 1; $month<=12; $month++ ){
+        
+        $monthFinal = date("$month");
+        $dateStr = sprintf("%02d-%02d", $year, $month);
+        
+        $dateTimeStamp = (new DateTime($dateStr))->getTimestamp();
+        $date = utf8_encode(ucfirst(strftime("%B de %Y", $dateTimeStamp)));
+
+        $periods[$dateStr] = $date;
+    }
+}
+
+$registries = $wh->getMonthlyReport($selectedUser, $selectedPeriod);
 
 $report = [];
 $worked_days = 0;
 $sum_of_worked_time = 0;
-$lastDay = getLastDayOfMonthh(new DateTime())->format('d');
+$lastDay = getLastDayOfMonthh($selectedPeriod)->format('d');
 
 for ($day = 1; $day <= $lastDay; $day++) {
-    $date = (new DateTime())->format('Y-m') . "-" . sprintf('%02d', $day);
+    $date = $selectedPeriod . "-" . sprintf('%02d', $day);
+   
     $registry = $registries[$date];
-
     if (isPastWorkDay($date)) {
         $worked_days++;
     }
@@ -35,6 +56,7 @@ for ($day = 1; $day <= $lastDay; $day++) {
     }
 }
 
+
 $expected_time = $worked_days * DAILY_TIME;
 
 $balance = getTimeStringFromSeconds(($sum_of_worked_time - $expected_time));
@@ -43,5 +65,9 @@ loadTemplateView('monthly_report', [
     'monthly_reports' => $report,
     'total_worked_time' => $sum_of_worked_time,
     'balance' => $balance,
-    'expected_time' => $expected_time
-]);
+    'expected_time' => $expected_time,
+    'periods' => $periods,
+    'users' => $users,
+    'selectedPeriod' => $selectedPeriod,
+    'selectedUser' => $selectedUser
+    ]);
