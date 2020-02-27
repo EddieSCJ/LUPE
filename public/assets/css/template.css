@@ -226,5 +226,25 @@ body.hidesidebar {
 
 .saida{
     color: rgb(172, 20, 20);
+}
 
+.footer_monthly_reports {
+    background-color: #1976d2 !important;
+}
+
+.table td, .table th {
+    border: 0px;    
+}
+
+table.dataTable tbody tr{
+    background-color: #ffffff;
+}
+
+.table-light.table-striped tbody tr:nth-of-type(odd){
+    background-color: #1976d2;
+    color: white;
+}
+
+#monthly_work_result{
+    color: white;
 }

@@ -48,12 +48,33 @@ function stringToDate($string){
 
 function getLastDayOfMonthh($date){
     $date = getDateAsDateTime($date)->getTimestamp();
-    return date('Y-m-t', $date);
+    return getDateAsDateTime(date('Y-m-t', $date));
 }
 
 function getFirstDayOfMonthh($date){
     $date = getDateAsDateTime($date)->getTimestamp();
-    return date('Y-m-1', $date);
+    return getDateAsDateTime(date('Y-m-1', $date));
 }
 
+function isPastWorkDay($date){
+    return !isWeekend($date) and isBefore($date, new DateTime());
+}
+
+function getTimeStringFromSeconds($seconds){
+    $h = intdiv($seconds, 3600);
+    $min = intdiv($seconds % 3600, 60);
+    $s = ($seconds % 3600) % 60;
+
+    return sprintf("%02d:%02d:%02d", $h, $min, $s);
+    
+}
+
+function prepareDataToVisu($monthly_reports)
+{
+    foreach ($monthly_reports as $registry){
+        $registry->work_date = getDateAsDateTime($registry->work_date)->format("d/m/Y");
+        $registry->worked_time = getTimeStringFromSeconds($registry->worked_time);
+    }
+
+}
 ?>

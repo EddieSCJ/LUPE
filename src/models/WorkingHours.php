@@ -93,8 +93,8 @@ class WorkingHours extends Model{
 
     public function getMonthlyReport($userId, $date){
         $registries = [];
-        $startDate = getFirstDayOfMonthh($date);
-        $endDate = getLastDayOfMonthh($date);
+        $startDate = getFirstDayOfMonthh($date)->format('Y-m-d');
+        $endDate = getLastDayOfMonthh($date)->format('Y-m-d');
 
         $result = static::getResultFromSelect('*', [
             'user_id' => $userId,
