@@ -1,3 +1,6 @@
 <main class="content">
-    <h1>OLOCO BICHO</h1>
+    <?php
+    print_r($monthly_reports);
+    echo "<br>";
+    ?>
 </main>

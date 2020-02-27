@@ -4,5 +4,5 @@ ini_set('display_startup_erros', 1);
 error_reporting(E_ALL);
 loadModel("WorkingHours");
 
-echo getLastDayOfMonthh(new DateTIme());
+
 ?>

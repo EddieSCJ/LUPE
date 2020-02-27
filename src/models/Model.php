@@ -76,15 +76,13 @@ class Model
         return $result ? new $class($result->fetchObject()) : null;
     }
 
-    private static function getResultFromSelect($columns = '*', $filters = [])
+    public static function getResultFromSelect($columns = '*', $filters = [])
     {
         $sql = " SELECT $columns FROM " . static::$tableName . static::getFilters($filters);
-
         $result = Database::getResultFromQuery($sql);
         if ($result->rowCount() == null) {
             return null;
         } else {
-
             return $result;
         }
     }
@@ -95,8 +93,8 @@ class Model
         if (count($filters) > 0) {
             $sql .= " WHERE 1 = 1";
             foreach ($filters as $key => $value) {
-                if ($key == 'value') {
-                    $sql = "AND {$value}";
+                if ($key == 'raw') {
+                    $sql .= " AND {$value}";
                 } else {
                     $sql .= " AND $key = " . static::getFormated($value);
                 }
@@ -114,7 +112,7 @@ class Model
             return "'$value'";
         } elseif (is_null($value)) {
             return "null";
-        } else {
+        } else{
             return "'$value'";
         }
     }

@@ -49,7 +49,11 @@ function stringToDate($string){
 function getLastDayOfMonthh($date){
     $date = getDateAsDateTime($date)->getTimestamp();
     return date('Y-m-t', $date);
+}
 
+function getFirstDayOfMonthh($date){
+    $date = getDateAsDateTime($date)->getTimestamp();
+    return date('Y-m-1', $date);
 }
 
 ?>
