@@ -10,6 +10,7 @@ $user = $_SESSION['user'];
 $selectedUser = $_POST['selectedUser']  ? $_POST['selectedUser'] : $user->id;
 
 $wh =  WorkingHours::loadFromUserAndData($selectedUser, (new DateTime())->format('Y-m-d'));
+$selectedUserAdmin = (boolean)$user->is_admin;
 
 $periods = [];
 $selectedPeriod = $_POST['periods'] ? $_POST['periods'] : (new DateTime())->format("Y-m");
@@ -71,5 +72,6 @@ loadTemplateView('monthly_report', [
     'periods' => $periods,
     'users' => $users,
     'selectedPeriod' => $selectedPeriod,
-    'selectedUser' => $selectedUser
+    'selectedUser' => $selectedUser,
+    'selectedUserAdmin' => $selectedUserAdmin,
     ]);
