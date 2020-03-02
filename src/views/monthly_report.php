@@ -1,7 +1,6 @@
 <main class="content">
     <?php
     prepareDataToVisu($monthly_reports, $total_worked_time);
-
     $userVisibleAll = (new User([]))->getOne("name, id", ["id" => $selectedUser]);
 
     ?>
@@ -21,7 +20,7 @@
                 <form class="mb-1" action="#" method="POST">
                     <div class="row">
                         <select name="periods" class="custom-select col-5 mx-1" id="periods">
-                            <option value="<?= $selectedPeriod ?>"> <?= utf8_encode(ucfirst(strftime("%B de %Y", (new DateTime($selectedPeriod))->getTimestamp()))) ?> </option>
+                            <option value="<?= $selectedPeriod ?>"> <?= ucfirst(strftime("%B de %Y", (new DateTime($selectedPeriod))->getTimestamp())) ?> </option>
                             <?php foreach ($periods as $key => $value) : ?>
                                 <?php if ($key != $selectedPeriod) : ?>
                                     <option value="<?= $key ?>"> <?= $value ?> </option>

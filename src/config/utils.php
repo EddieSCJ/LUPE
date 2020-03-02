@@ -87,7 +87,7 @@ function getTimeStringFromSeconds($seconds)
 function prepareDataToVisu($monthly_reports)
 {
     foreach ($monthly_reports as $registry) {
-        $registry->work_date = utf8_encode(ucwords(formatDateWithLocale($registry->work_date, "%d de %B de %Y, %a")));
+        $registry->work_date = ucwords(formatDateWithLocale($registry->work_date, "%d de %B de %Y, %a"));
         $registry->worked_time = getTimeStringFromSeconds($registry->worked_time);
     }
 }

@@ -32,8 +32,7 @@ class Database{
 
     public static function executeSQL($sql, $table_name){
         $conn = self::getConnection();
-        print_r($sql);
-        if($conn->query($sql) == null){
+        if($conn->query($sql) === null){
 
             throw new Exception(pg_errormessage($conn));
         }

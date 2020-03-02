@@ -1,4 +1,5 @@
-<?php
+<?php 
+
 session_start();
 requireValidSession();
 
@@ -25,7 +26,7 @@ for($yearDiff = 0; $yearDiff<=10; $yearDiff++){
         $dateStr = sprintf("%02d-%02d", $year, $month);
         
         $dateTimeStamp = (new DateTime($dateStr))->getTimestamp();
-        $date = utf8_encode(ucfirst(strftime("%B de %Y", $dateTimeStamp)));
+        $date = ucfirst(strftime("%B de %Y", $dateTimeStamp));
 
         $periods[$dateStr] = $date;
     }
@@ -41,6 +42,7 @@ $lastDay = getLastDayOfMonthh($selectedPeriod)->format('d');
 for ($day = 1; $day <= $lastDay; $day++) {
     $date = $selectedPeriod . "-" . sprintf('%02d', $day);
    
+
     $registry = $registries[$date];
     if (isPastWorkDay($date)) {
         $worked_days++;
