@@ -1,21 +1,21 @@
 <main class="content">
     <?php
     render_title("Registrar Ponto", "Mantenha o seu ponto consistente", "icofont-check-alt");
-    include_once(TEMPLATE_PATH . "/messages.php");
+    include_once(sTEMPLATE_PATH . "/messages.php");
     ?>
     <div class="card">
         <div class="card-header">
-            <h3><?= $today ?></h3>
+            <h3><?= $rToday ?></h3>
             <p>Os batimentos efetutuados hoje</p>
         </div>
         <div class="card-body ">
             <div class="d-flex m-3 justify-content-around">
-                <span class="entrada">Entrada 1: <?= $records->time1 ?? '----' ?></span>
-                <span class="saida">Saída 1: <?= $records->time2 ?? '----' ?></span>
+                <span class="entrada">Entrada 1: <?= $oRecord->time1 ?? '----' ?></span>
+                <span class="saida">Saída 1: <?= $oRecord->time2 ?? '----' ?></span>
             </div>
             <div class="d-flex m-3 justify-content-around">
-                <span class="entrada">Entrada 2: <?= $records->time3 ?? '----' ?></span>
-                <span class="saida">Saída 2: <?= $records->time4 ?? '----' ?></span>
+                <span class="entrada">Entrada 2: <?= $oRecord->time3 ?? '----' ?></span>
+                <span class="saida">Saída 2: <?= $oRecord->time4 ?? '----' ?></span>
             </div>
         </div>
         <div class="card-footer d-flex justify-content-center align-items-center">

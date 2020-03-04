@@ -33,7 +33,7 @@
             <div class="card-body">
                 <?php
 
-                include_once(VIEW_PATH . "/template/messages.php"); ?>
+                include_once(sVIEW_PATH . "/template/messages.php"); ?>
                 <div autofocus class="form-group">
                     <label for="#email"> Email:</label>
                     <input id="email" type="email" name="email" placeholder="username@email.com" class="form-control 

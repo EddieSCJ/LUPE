@@ -4,15 +4,21 @@
 // error_reporting(E_ALL);
 require_once(dirname(__FILE__, 2) . "/src/config/config.php");
 
-$uri = urldecode(
+// $aParametros = $_GET;
+
+// $sControlador = $aParametros['controller'];
+// $sId = $aParametros['id'];
+// $sAcao = $aParametros['action'];
+
+$sUri = urldecode(
     parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
 );
 
-if($uri === '/' || $uri === '') {
-    $uri = '/day_records_controller.php';
+if($sUri === '/' || $sUri === '') {
+    $sUri = '/day_records_controller.php';
 }
 
-require_once(CONTROLLER_PATH . "/{$uri}");
+require_once(sCONTROLLER_PATH . "/{$rUri}");
 
 ?>
 

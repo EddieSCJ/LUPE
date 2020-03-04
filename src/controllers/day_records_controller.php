@@ -3,16 +3,16 @@ session_start();
 requireValidSession();
 
 
-$date = (new DateTime())->getTimestamp();
-$today = strftime('%d de %B de %Y',$date);
+$rDate = (new DateTime())->getTimestamp();
+$rToday = strftime('%d de %B de %Y',$date);
 
-$user = $_SESSION['user'];
-$records = WorkingHours::loadFromUserAndData($user->id, date('Y-m-d'));
+$oUser = $_SESSION['user'];
+$oRecord = WorkingHours::loadFromUserAndData($oUser->id, date('Y-m-d'));
 
 loadTemplateView('day_records', 
 [
-    'today' => $today,
-    'records' => $records
+    'today' => $rToday,
+    'records' => $oRecord
 ]);
 
 ?>

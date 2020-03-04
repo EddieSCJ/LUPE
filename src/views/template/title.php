@@ -1,9 +1,9 @@
 <div class="content-title mb-4">
-    <?php if (isset($icon)) { ?>
-        <i class="icon <?= $icon ?> mr-2"></i>
+    <?php if (isset($rIcon)) { ?>
+        <i class="icon <?= $rIcon ?> mr-2"></i>
     <?php } ?>
     <div>
-        <h1><?= $title ?></h1>
-        <h2><?= $subtitle ?></h2>
+        <h1><?= $sTitle ?></h1>
+        <h2><?= $sSubtitle ?></h2>
     </div>
 </div>

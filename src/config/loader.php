@@ -1,42 +1,41 @@
 <?php
 
-function loadModel($modelName){
-    require_once(MODEL_PATH . "/" . $modelName . ".php");
+function loadModel($sModelName){
+    require_once(sMODEL_PATH . "/" . $sModelName . ".php");
 }
 
-function loadView($viewName, $params = array()){
-    if(count($params) > 0){
-        foreach($params as $key => $value){
+function loadView($sViewName, $aParams = array()){
+    if(count($aParams) > 0){
+        foreach($aParams as $key => $value){
             if(strlen($key)>0){
                 ${$key} = $value;
             }
         }
     }
-    require_once(VIEW_PATH . "/" . $viewName . ".php");
+    require_once(sVIEW_PATH . "/" . $sViewName . ".php");
 } 
 
-function loadTemplateView($viewName, $params = array()){
-    if(count($params) > 0){
-        foreach($params as $key => $value){
+function loadTemplateView($sViewName, $aParams = array()){
+    if(count($aParams) > 0){
+        foreach($aParams as $key => $value){
             if(strlen($key)>0){
                 ${$key} = $value;
             }
         }
     }
-    require_once(TEMPLATE_PATH . "/header.php");
-    require_once(TEMPLATE_PATH . "/" . "left.php");
-    require_once(VIEW_PATH . "/" . $viewName . ".php");
-    require_once(TEMPLATE_PATH . "/footer.php");
+    require_once(sTEMPLATE_PATH . "/header.php");
+    require_once(sTEMPLATE_PATH . "/" . "left.php");
+    require_once(sVIEW_PATH . "/" . $sViewName . ".php");
+    require_once(sTEMPLATE_PATH . "/footer.php");
     
 } 
 
-function loadController($controllerName){
-    require_once(CONTROLLER_PATH . "/" . $controllerName . ".php");
+function loadController($sControllerName){
+    require_once(sCONTROLLER_PATH . "/" . $sControllerName . ".php");
 }
 
-function render_title($title, $subtitle, $icon=null){
-    require_once(TEMPLATE_PATH . "/title.php");
-
+function render_title($sTitle, $sSubtitle, $rIcon=null){
+    require_once(sTEMPLATE_PATH . "/title.php");
 }
 
 

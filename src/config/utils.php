@@ -1,99 +1,99 @@
 <?php
 
-function getDateAsDateTime($date)
+function getDateAsDateTime($rDate)
 {
-    return is_string($date) ? new DateTime($date) : $date;
+    return is_string($rDate) ? new DateTime($rDate) : $rDate;
 }
 
-function isWeekend($date)
+function isWeekend($rDate)
 {
-    $inputDate = getDateAsDateTime($date);
-    return $inputDate->format('N') >= 6;
+    $rInputDate = getDateAsDateTime($rDate);
+    return $rInputDate->format('N') >= 6;
 }
 
-function isBefore($date1, $date2)
+function isBefore($rDate1, $rDate2)
 {
-    $inputDate1 = getDateAsDateTime($date1);
-    $inputDate2 = getDateAsDateTime($date2);
+    $rInputDate1 = getDateAsDateTime($rDate1);
+    $rInputDate2 = getDateAsDateTime($rDate2);
 
-    return $inputDate1 <= $inputDate2;
+    return $rInputDate1 <= $rInputDate2;
 }
 
-function getNextDay($date1)
+function getNextDay($rDate1)
 {
-    $inputDate1 = getDateAsDateTime($date1);
-    $inputDate1->modify('+1 day');
+    $rInputDate1 = getDateAsDateTime($rDate1);
+    $rInputDate1->modify('+1 day');
 
-    return $inputDate1;
+    return $rInputDate1;
 }
 
 
-function sumInterval($interval1, $interval2)
+function sumInterval($rInterval1, $rInterval2)
 {
-    $date = new DateTime("00:00:00");
-    $date->add($interval1);
-    $date->add($interval2);
-    return (new DateTime('00:00:00'))->diff($date);
+    $rDate = new DateTime("00:00:00");
+    $rDate->add($rInterval1);
+    $rDate->add($rInterval2);
+    return (new DateTime('00:00:00'))->diff($rDate);
 }
 
-function subtractInterval($i1, $i2)
+function subtractInterval($rInterval1, $rInterval2)
 {
-    $date = new DateTime("00:00:00");
-    $date->add($i1);
-    $date->sub($i2);
-    return (new DateTime("00:00:00"))->diff($date);
+    $rDate = new DateTime("00:00:00");
+    $rDate->add($rInterval1);
+    $rDate->sub($rInterval2);
+    return (new DateTime("00:00:00"))->diff($rDate);
 }
 
-function intervalToDate($interval)
+function intervalToDate($rInterval)
 {
-    return new DateTimeImmutable($interval->format("%H:%i:%s"));
+    return new DateTimeImmutable($rInterval->format("%H:%i:%s"));
 }
 
-function stringToDate($string)
+function stringToDate($sString)
 {
-    return DateTimeImmutable::createFromFormat('H:i:s', $string);
+    return DateTimeImmutable::createFromFormat('H:i:s', $sString);
 }
 
-function getLastDayOfMonthh($date)
+function getLastDayOfMonthh($rDate)
 {
-    $date = getDateAsDateTime($date)->getTimestamp();
-    return getDateAsDateTime(date('Y-m-t', $date));
+    $tDate = getDateAsDateTime($rDate)->getTimestamp();
+    return getDateAsDateTime(date('Y-m-t', $tDate));
 }
 
-function getFirstDayOfMonthh($date)
+function getFirstDayOfMonthh($rDate)
 {
-    $date = getDateAsDateTime($date)->getTimestamp();
-    return getDateAsDateTime(date('Y-m-1', $date));
+    $tDate = getDateAsDateTime($rDate)->getTimestamp();
+    return getDateAsDateTime(date('Y-m-1', $tDate));
 }
 
-function isPastWorkDay($date)
+function isPastWorkDay($rDate)
 {
-    return !isWeekend($date) and isBefore($date, new DateTime());
+    return !isWeekend($rDate) and isBefore($rDate, new DateTime());
 }
 
-function getTimeStringFromSeconds($seconds)
+function getTimeStringFromSeconds($iSeconds)
 {
-    $h = intdiv($seconds, 3600);
+    $iH = intdiv($iSeconds, 3600);
   
-    $min = intdiv($seconds % 3600, 60);
-    $min = $min<0 ? $min*-1 : $min;
+    $iMin = intdiv($iSeconds % 3600, 60);
+    $iMin = $iMin<0 ? $iMin*-1 : $iMin;
   
-    $s = ($seconds % 3600) % 60;
-    $s = $s<0 ? $s*-1 : $s;
+    $iS = ($iSeconds % 3600) % 60;
+    $iS = $iS<0 ? $iS*-1 : $iS;
 
-    return sprintf("%02d:%02d:%02d", $h, $min, $s);
+    return sprintf("%02d:%02d:%02d", $iH, $iMin, $iS);
 }
 
-function prepareDataToVisu($monthly_reports)
+function prepareDataToVisu($loMonthly_reports)
 {
-    foreach ($monthly_reports as $registry) {
-        $registry->work_date = ucwords(formatDateWithLocale($registry->work_date, "%d de %B de %Y, %a"));
-        $registry->worked_time = getTimeStringFromSeconds($registry->worked_time);
+    foreach ($loMonthly_reports as $oRegistry) {
+        $oRegistry->work_date = ucwords(formatDateWithLocale($oRegistry->work_date, "%d de %B de %Y, %a"));
+        $oRegistry->worked_time = getTimeStringFromSeconds($oRegistry->worked_time);
     }
 }
 
-function formatDateWithLocale($date, $pattern)
+function formatDateWithLocale($rDate, $sPattern)
 {
-    $time = getDateAsDateTime($date)->getTimestamp();
-    return strftime($pattern, $time);
+    $tTime = getDateAsDateTime($rDate)->getTimestamp();
+    return strftime($sPattern, $tTime);
 }

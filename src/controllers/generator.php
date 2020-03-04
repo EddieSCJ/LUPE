@@ -6,76 +6,76 @@ loadModel('WorkingHours');
 // Database::executeSQL('DELETE FROM working_hours ', 'working_hours');
 // Database::executeSQL('DELETE FROM users WHERE id>5 ', 'users');
 
-function getDayByOdds($regularRate, $extraRate, $lazyRate)
+function getDayByOdds($iRegularRate, $iExtraRate, $iLazyRate)
 {
 
-    $regularDay = [
+    $aRegularDay = [
         'time1' => '08:00:00',
         'time2' => '12:00:00',
         'time3' => '13:00:00',
         'time4' => '17:00:00',
-        'worked_time' => DAILY_TIME
+        'worked_time' => iDAILY_TIME
     ];
 
-    $extraHour = [
+    $aExtraHour = [
         'time1' => '08:00:00',
         'time2' => '12:00:00',
         'time3' => '13:00:00',
         'time4' => '18:00:00',
-        'worked_time' => DAILY_TIME + (60 * 60)
+        'worked_time' => iDAILY_TIME + (60 * 60)
     ];
 
-    $LazyHour = [
+    $aLazyHour = [
         'time1' => '08:30:00',
         'time2' => '12:00:00',
         'time3' => '13:00:00',
         'time4' => '18:00:00',
-        'worked_time' => DAILY_TIME - (60 * 60) / 2
+        'worked_time' => iDAILY_TIME - (60 * 60) / 2
     ];
 
-    $value = rand(0, 100);
-    if ($value <= $regularRate) {
-        return $regularDay;
-    } else if ($value <= $regularRate + $extraRate) {
-        return $extraHour;
+    $iValue = rand(0, 100);
+    if ($iValue <= $iRegularRate) {
+        return $aRegularDay;
+    } else if ($iValue <= $iRegularRate + $iExtraRate) {
+        return $aExtraHour;
     } else {
-        return $LazyHour;
+        return $aLazyHour;
     }
 }
 
-function populateWorkingHours($userId, $initialDate, $regularRate, $extraRate, $lazyRate)
+function populateWorkingHours($iUserId, $rInitialDate, $iRegularRate, $iExtraRate, $iLazyRate)
 {
-    $currentDate = $initialDate;
-    $today = new DateTime();
-    $columns = [
-        'user_id' => $userId,
-        'work_date' => $currentDate
+    $rCurrentDate = $rInitialDate;
+    $rToday = new DateTime();
+    $aColumns = [
+        'user_id' => $iUserId,
+        'work_date' => $rCurrentDate
     ];
 
-    while (isBefore($currentDate, $today)) {
-        if (!isWeekend($currentDate)) {
-            $template = getDayByOdds($regularRate, $extraRate, $lazyRate);
-            $columns = array_merge($columns, $template);
-            $working_hours = new WorkingHours($columns);
-            $working_hours->save();
+    while (isBefore($rCurrentDate, $rToday)) {
+        if (!isWeekend($rCurrentDate)) {
+            $aTemplate = getDayByOdds($iRegularRate, $iExtraRate, $iLazyRate);
+            $aColumns = array_merge($aColumns, $aTemplate);
+            $oWorking_hours = new WorkingHours($aColumns);
+            $oWorking_hours->save();
         }
-        $currentDate = getNextDay($currentDate)->format('Y-m-d');
-        $columns['work_date'] = $currentDate;
+        $rCurrentDate = getNextDay($rCurrentDate)->format('Y-m-d');
+        $aColumns['work_date'] = $rCurrentDate;
     }
 }
 
 
 
 
-// $lastDay = getLastDayOfMonthh("2020-01")->format('d');
+// $iLastDay = getLastDayOfMonthh("2020-01")->format('d');
 
 
-// for ($day = 1; $day <= $lastDay; $day++) {
-//     $date = "2020-01" . "-" . sprintf('%02d', $day);
+// for ($iDay = 1; $iDay <= $iLastDay; $day++) {
+//     $sDate = "2020-01" . "-" . sprintf('%02d', $iDay);
    
-//         populateWorkingHours(1, $date, 70, 20, 10);
-//         populateWorkingHours(3, $date, 10, 80, 10);
-//         populateWorkingHours(4, $date, 20, 20, 60);
+//         populateWorkingHours(1, $sDate, 70, 20, 10);
+//         populateWorkingHours(3, $sDate, 10, 80, 10);
+//         populateWorkingHours(4, $sDate, 20, 20, 60);
     
 // }
 

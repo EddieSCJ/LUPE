@@ -5,10 +5,10 @@ class ValidationException extends AppException{
     private $errors = [];
 
     public function __construct($errors =  [], 
-        $message = "Erros de validação",
-        $code = 0,
+        $sMessage = "Erros de validação",
+        $iCode = 0,
         $previous = null){
-        parent::__construct($message, $code, $previous);
+        parent::__construct($sMessage, $iCode, $previous);
         $this->errors = $errors;    
     }
 

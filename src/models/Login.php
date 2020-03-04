@@ -5,18 +5,18 @@ loadModel('User');
 Class Login extends Model{
 
     public function validate(){
-        $errors =[];
+        $aErrors =[];
         
         if(!$this->email){
-            $errors['email'] = "O email é um campo obrigatório.";
+            $aErrors['email'] = "O email é um campo obrigatório.";
         }
 
         if(!$this->password){
-            $errors['password'] = "O password é um campo obrigatório.";
+            $aErrors['password'] = "O password é um campo obrigatório.";
         }
 
-        if(count($errors)>0){
-            throw new ValidationException($errors);
+        if(count($aErrors)>0){
+            throw new ValidationException($aErrors);
         }
 
     }

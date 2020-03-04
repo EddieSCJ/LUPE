@@ -5,73 +5,73 @@ requireValidSession();
 
 loadModel("User");
 
-$user = $_SESSION['user'];
+$oUser = $_SESSION['user'];
 
-$selectedUser = $_POST['selectedUser']  ? $_POST['selectedUser'] : $user->id;
+$selectedUser = $_POST['selectedUser']  ? $_POST['selectedUser'] : $oUser->id;
 
-$wh =  WorkingHours::loadFromUserAndData($selectedUser, (new DateTime())->format('Y-m-d'));
-$selectedUserAdmin = (boolean)$user->is_admin;
+$oWh =  WorkingHours::loadFromUserAndData($iSelectedUser, (new DateTime())->format('Y-m-d'));
+$bSelectedUserAdmin = (boolean)$oUser->is_admin;
 
-$periods = [];
-$selectedPeriod = $_POST['periods'] ? $_POST['periods'] : (new DateTime())->format("Y-m");
-$selectedPeriod = explode("-" , $selectedPeriod);
-$selectedPeriod = sprintf("%02d-%02d", $selectedPeriod[0], $selectedPeriod[1]);
-$user = new User([]);
-$users = $user->getAll("name, id");
+$aPeriods = [];
+$sSelectedPeriod = $_POST['periods'] ? $_POST['periods'] : (new DateTime())->format("Y-m");
+$sSelectedPeriod = explode("-" , $sSelectedPeriod);
+$sSelectedPeriod = sprintf("%02d-%02d", $sSelectedPeriod[0], $sSelectedPeriod[1]);
+$oUser = new User([]);
+$loUsers = $oUser->getAll("name, id");
 
-for($yearDiff = 0; $yearDiff<=10; $yearDiff++){
-    $year = date("Y")-$yearDiff;
-    for($month = 1; $month<=12; $month++ ){
+for($iYearDiff = 0; $iYearDiff<=10; $iYearDiff++){
+    $iYear = date("Y")-$iYearDiff;
+    for($iMonth = 1; $iMonth<=12; $iMonth++ ){
         
-        $monthFinal = date("$month");
-        $dateStr = sprintf("%02d-%02d", $year, $month);
+        $iMonthFinal = date("$iMonth");
+        $sDateStr = sprintf("%02d-%02d", $iYear, $iMonth);
         
-        $dateTimeStamp = (new DateTime($dateStr))->getTimestamp();
-        $date = ucfirst(strftime("%B de %Y", $dateTimeStamp));
+        $tDateTimeStamp = (new DateTime($sDateStr))->getTimestamp();
+        $sDate = ucfirst(strftime("%B de %Y", $tDateTimeStamp));
 
-        $periods[$dateStr] = $date;
+        $aPeriods[$sDateStr] = $sDate;
     }
 }
 
-$registries = $wh->getMonthlyReport($selectedUser, $selectedPeriod);
+$loRegistries = $oWh->getMonthlyReport($iSelectedUser, $sSelectedPeriod);
 
-$report = [];
-$worked_days = 0;
-$sum_of_worked_time = 0;
-$lastDay = getLastDayOfMonthh($selectedPeriod)->format('d');
+$loReport = [];
+$iWorked_days = 0;
+$iSum_of_worked_time = 0;
+$iLastDay = getLastDayOfMonthh($sSelectedPeriod)->format('d');
 
-for ($day = 1; $day <= $lastDay; $day++) {
-    $date = $selectedPeriod . "-" . sprintf('%02d', $day);
+for ($iDay = 1; $iDay <= $iLastDay; $iDay++) {
+    $sDate = $sSelectedPeriod . "-" . sprintf('%02d', $iDay);
    
 
-    $registry = $registries[$date];
-    if (isPastWorkDay($date)) {
-        $worked_days++;
+    $oRegistry = $loRegistries[$sDate];
+    if (isPastWorkDay($sDate)) {
+        $iWorked_days++;
     }
-    if ($registry) {
-        $sum_of_worked_time += $registry->worked_time;
-        array_push($report, $registry);
+    if ($oRegistry) {
+        $iSum_of_worked_time += $oRegistry->worked_time;
+        array_push($loReport, $oRegistry);
     } else {
-        array_push($report, new WorkingHours([
-            'work_date' => $date,
+        array_push($loReport, new WorkingHours([
+            'work_date' => $sDate,
             'worked_time' => 0,
         ]));
     }
 }
 
 
-$expected_time = $worked_days * DAILY_TIME;
+$iExpected_time = $iWorked_days * iDAILY_TIME;
 
-$balance = getTimeStringFromSeconds(($sum_of_worked_time - $expected_time));
+$sBalance = getTimeStringFromSeconds(($iSum_of_worked_time - $iExpected_time));
 
 loadTemplateView('monthly_report', [
-    'monthly_reports' => $report,
-    'total_worked_time' => $sum_of_worked_time,
-    'balance' => $balance,
-    'expected_time' => $expected_time,
-    'periods' => $periods,
-    'users' => $users,
-    'selectedPeriod' => $selectedPeriod,
-    'selectedUser' => $selectedUser,
-    'selectedUserAdmin' => $selectedUserAdmin,
+    'loMonthly_reports' => $loReport,
+    'iTotal_worked_time' => $iSum_of_worked_time,
+    'sBalance' => $sBalance,
+    'iExpected_time' => $iExpected_time,
+    'aPeriods' => $aPeriods,
+    'loUsers' => $loUsers,
+    'sSelectedPeriod' => $sSelectedPeriod,
+    'iSelectedUser' => $iSelectedUser,
+    'bSelectedUserAdmin' => $bSelectedUserAdmin,
     ]);

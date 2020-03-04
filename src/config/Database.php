@@ -2,44 +2,44 @@
 
 class Database{
     public static function getConnection(){
-        $env_path = realpath(dirname(__FILE__ ). '/../env.ini');
-        $env = parse_ini_file($env_path);
+        $sEnvPath = realpath(dirname(__FILE__ ). '/../env.ini');
+        $aEnv = parse_ini_file($sEnvPath);
         
 
         try{
-            $connection = new PDO(
-                "pgsql:host={$env['host']};
-                dbname={$env['database']}",
-                $env['username'], 
-                $env['password']
+            $rConnection = new PDO(
+                "pgsql:host={$aEnv['host']};
+                dbname={$aEnv['database']}",
+                $aEnv['username'], 
+                $aEnv['password']
             );
         }catch(PDOException $e) {
             echo 'ERROR: ' . $e->getMessage() . '<br>';
             die("Lamentamos o ocorrido");
         }
 
-        return $connection;
+        return $rConnection;
     }
 
     public static function getResultFromQuery($sql){
-        $connection = self::getConnection();
+        $rConncetion = self::getConnection();
 
-        $result = $connection->query($sql);
-        $connection = null;
+        $rResult = $rConncetion->query($sql);
+        $rConncetion = null;
 
-        return $result;
+        return $rResult;
     }
 
     public static function executeSQL($sql, $table_name){
-        $conn = self::getConnection();
-        if($conn->query($sql) === null){
+        $rConnection = self::getConnection();
+        if($rConnection->query($sql) === null){
 
-            throw new Exception(pg_errormessage($conn));
+            throw new Exception(pg_errormessage($rConnection));
         }
         echo $sql ."<br>";
-        $id = $conn->lastInsertId($table_name);
-        $conn = null;
-        return $id;
+        $iId = $rConnection->lastInsertId($table_name);
+        $rConnection = null;
+        return $iId;
     }
 
 }

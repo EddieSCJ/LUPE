@@ -1,8 +1,8 @@
 <?php
 
 function requireValidSession(){
-    $user = $_SESSION['user'];
-    if(!isset($user)){
+    $oUser = $_SESSION['user'];
+    if(!isset($oUser)){
         header("Location: login_controller.php");
         exit();
     }

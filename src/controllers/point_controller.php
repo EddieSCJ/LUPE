@@ -5,17 +5,17 @@ requireValidSession();
 
 loadModel("WorkingHours");
 
-$user = $_SESSION['user']; 
+$oUser = $_SESSION['user']; 
 
-$records = WorkingHours::loadFromUserAndData($user->id, date('Y-m-d'));
-$currentTime = strftime('%H:%M:%S', time());
+$oRecord = WorkingHours::loadFromUserAndData($user->id, date('Y-m-d'));
+$sCurrentTime = strftime('%H:%M:%S', time());
 
 if($_POST['batimento_forcado']){
-    $currentTime = $_POST['batimento_forcado'];
+    $sCurrentTime = $_POST['batimento_forcado'];
 }
 
 try{
-    $records->batimento($currentTime);
+    $oRecord->batimento($sCurrentTime);
     $_SESSION['message'] = [
         'type' => 'sucess',
         'message' => 'Ponto batido com sucesso'
