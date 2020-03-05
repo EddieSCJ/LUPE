@@ -18,7 +18,7 @@ if($sUri === '/' || $sUri === '') {
     $sUri = '/day_records_controller.php';
 }
 
-require_once(sCONTROLLER_PATH . "/{$rUri}");
+require_once(sCONTROLLER_PATH . "/{$sUri}");
 
 ?>
 

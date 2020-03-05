@@ -59,7 +59,7 @@
             }
         });
 
-        var balance = <?= $total_worked_time - $expected_time ?>;
+        var balance = <?= $iTotal_worked_time - $iExpected_time ?>;
         if (balance < 0) {
             $("#monthly_work_result").css("background-color", "rgb(156, 21, 21)");
         } else {

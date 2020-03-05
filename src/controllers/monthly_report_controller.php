@@ -7,7 +7,7 @@ loadModel("User");
 
 $oUser = $_SESSION['user'];
 
-$selectedUser = $_POST['selectedUser']  ? $_POST['selectedUser'] : $oUser->id;
+$iSelectedUser = $_POST['selectedUser']  ? $_POST['selectedUser'] : $oUser->id;
 
 $oWh =  WorkingHours::loadFromUserAndData($iSelectedUser, (new DateTime())->format('Y-m-d'));
 $bSelectedUserAdmin = (boolean)$oUser->is_admin;
