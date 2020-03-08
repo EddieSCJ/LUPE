@@ -33,7 +33,7 @@
 
                             <select name="selectedUser" class="custom-select col-4 mx-1" id="users">
                                 <option value="<?= $userVisibleAll->id ?>"> <?= $userVisibleAll->name ?> </option>
-                                <?php foreach ($aPeriods as $user) : ?>
+                                <?php foreach ($loUsers as $user) : ?>
                                     <?php if ($userVisibleAll->id != $user->id) : ?>
                                         <option value="<?= $user->id ?>"> <?= $user->name ?> </option>
                                     <?php endif ?>
