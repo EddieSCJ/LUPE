@@ -36,7 +36,6 @@ class Database{
 
             throw new Exception(pg_errormessage($rConnection));
         }
-        echo $sql ."<br>";
         $iId = $rConnection->lastInsertId($table_name);
         $rConnection = null;
         return $iId;

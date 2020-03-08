@@ -25,7 +25,7 @@ $activeClock = $wh->getActiveClock();
                 </a>
             </li>
             <li class="nav-item">
-                <a href=".php">
+                <a href="manager_report_controller.php">
                     <i class="icofont-chart-histogram mr-2">
                         Relatório Gerencial
                     </i>

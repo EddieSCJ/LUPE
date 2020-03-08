@@ -46,6 +46,11 @@ class Model
         $id = Database::executeSQL($sql, static::$tableName);
     }
 
+    public static function getCount($filters = []){
+        $result = static::getResultFromSelect("count(*) as count", $filters);
+        return $result->fetchObject()->count;
+    }
+
     public function __get($key)
     {
         return $this->values[$key];
