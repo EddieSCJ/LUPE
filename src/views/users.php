@@ -36,10 +36,10 @@
                         <?= $oUser->end_date ?>
                     </td>
                     <td>
-                        <a href="save_user_controller.php?update=<?= $user->id ?>" class="btn btn-warning rounded-circle mr-2">
+                        <a href="save_user_controller.php?update=<?= $oUser->id ?>" class="btn btn-warning rounded-circle mr-2">
                             <i class="icofont-edit"></i>
                         </a>
-                        <a href="?delete=<?= $user->id ?>" class="btn btn-danger rounded-circle">
+                        <a href="?delete=<?= $oUser->id ?>" class="btn btn-danger rounded-circle">
                             <i class="icofont-trash"></i>
                         </a>
                     </td>

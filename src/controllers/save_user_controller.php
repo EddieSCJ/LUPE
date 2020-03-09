@@ -2,7 +2,6 @@
 session_start();
 requireValidSession(true);
 
-
 $exception = null;
 $userData = [];
 
@@ -16,7 +15,7 @@ if(count($_POST) === 0 && isset($_GET['update'])) {
         if($dbUser->id) {
             $dbUser->update();
             addSuccessMsg('Usuário alterado com sucesso!');
-            header('Location: users.php');
+            header('Location: users_controller.php');
             exit();
         } else {
             $dbUser->insert();

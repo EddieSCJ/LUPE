@@ -16,7 +16,6 @@ if($_POST['batimento_forcado']){
 
 try{
     $oRecord->batimento($sCurrentTime);
-    print_r($oRecord);
     $_SESSION['message'] = [
         'type' => 'sucess',
         'message' => 'Ponto batido com sucesso'

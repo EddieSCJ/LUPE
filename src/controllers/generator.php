@@ -79,4 +79,3 @@ function populateWorkingHours($iUserId, $rInitialDate, $iRegularRate, $iExtraRat
     
 // }
 
-echo "Enois tio";

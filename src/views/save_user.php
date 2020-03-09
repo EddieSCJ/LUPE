@@ -9,7 +9,7 @@
         include(sTEMPLATE_PATH . "/messages.php");
     ?>
 
-    <form action="save_user_controller.php" method="post">
+    <form action="#" method="post">
         <input type="hidden" name="id" value="<?= $id ?>">
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -83,7 +83,7 @@
         </div>
         <div>
             <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
-            <a href="/users.php"
+            <a href="/users_controller.php"
                 class="btn btn-secondary btn-lg">Cancelar</a>
         </div>
     </form>
