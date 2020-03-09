@@ -22,10 +22,9 @@ class Database{
     }
 
     public static function getResultFromQuery($sql){
-        $rConncetion = self::getConnection();
-
-        $rResult = $rConncetion->query($sql);
-        $rConncetion = null;
+        $rConnection = self::getConnection();
+        $rResult = $rConnection->query($sql);
+        $rConnection = null;
 
         return $rResult;
     }

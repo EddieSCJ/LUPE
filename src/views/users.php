@@ -9,9 +9,8 @@
     include_once(sTEMPLATE_PATH . "/messages.php");
     ?>
 
-    <button class="btn btn-lg btn-outline-success mb-4 " data-toggle="modal" data-target="#registerUser">
-        Novo Usuário
-    </button>
+    <a class="btn btn-lg btn-outline-success mb-3" href="save_user_controller.php">Novo Usuário</a>
+
 
     <table class="table table-striped table-bordered table-hover">
         <thead>
@@ -37,13 +36,12 @@
                         <?= $oUser->end_date ?>
                     </td>
                     <td>
-                        <a href="save_user_controller.php?update=<?= $oUser->id ?>" class="btn btn-warning rounded-circle">
+                        <a href="save_user_controller.php?update=<?= $user->id ?>" class="btn btn-warning rounded-circle mr-2">
                             <i class="icofont-edit"></i>
                         </a>
-                        <a href="?delete=<?= $oUser->id ?>" class="btn btn-danger rounded-circle">
+                        <a href="?delete=<?= $user->id ?>" class="btn btn-danger rounded-circle">
                             <i class="icofont-trash"></i>
                         </a>
-
                     </td>
                 </tr>
             <?php endforeach ?>
@@ -51,8 +49,3 @@
 
     </table>
 </main>
-
-<?php
-    include_once(sTEMPLATE_PATH . "/register_modal.php");
-
-?>

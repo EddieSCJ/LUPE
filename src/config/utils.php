@@ -97,3 +97,17 @@ function formatDateWithLocale($rDate, $sPattern)
     $tTime = getDateAsDateTime($rDate)->getTimestamp();
     return strftime($sPattern, $tTime);
 }
+
+function addSuccessMsg($msg) {
+    $_SESSION['message'] = [
+        'type' => 'success',
+        'message' => $msg
+    ];
+}
+
+function addErrorMsg($msg) {
+    $_SESSION['message'] = [
+        'type' => 'error',
+        'message' => $msg
+    ];
+}

@@ -97,12 +97,17 @@ class Model
     public static function getResultFromSelect($columns = '*', $filters = [])
     {
         $sql = " SELECT $columns FROM " . static::$tableName . static::getFilters($filters);
+        echo $sql;
         $result = Database::getResultFromQuery($sql);
+
         if ($result->rowCount() == null) {
             return null;
         } else {
             return $result;
         }
+    }
+    public function getValues() {
+        return $this->values;
     }
 
     private static function getFilters($filters)
@@ -117,10 +122,20 @@ class Model
                     $sql .= " AND $key = " . static::getFormated($value);
                 }
             }
-        }
-        $sql .= ';';
 
-        return ;
+        $sql .= ';';
+        }
+
+        return $sql;
+    }
+
+    public function delete() {
+        static::deleteById($this->id);
+    }
+
+    public static function deleteById($id) {
+        $sql = "DELETE FROM " . static::$tableName . " WHERE id = {$id}";
+        Database::executeSQL($sql, static::$tableName);
     }
 
     private static function getFormated($value)
