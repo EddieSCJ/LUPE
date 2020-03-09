@@ -24,7 +24,8 @@ $activeClock = $wh->getActiveClock();
                     </i>
                 </a>
             </li>
-            <li class="nav-item">
+            <?php if($user->is_admin): ?>
+                <li class="nav-item">
                 <a href="manager_report_controller.php">
                     <i class="icofont-chart-histogram mr-2">
                         Relatório Gerencial
@@ -32,12 +33,13 @@ $activeClock = $wh->getActiveClock();
                 </a>
             </li>
             <li class="nav-item">
-                <a href=".php">
+                <a href="users_controller.php">
                     <i class="icofont-users mr-2">
                         Usuários
                     </i>
                 </a>
             </li>
+            <?php endif ?>
         </ul>
         <div class="spacer"></div>
         <div class="sidebar-widgets">

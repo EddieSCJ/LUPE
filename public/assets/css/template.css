@@ -65,6 +65,14 @@ header.header .dropdown:hover .dropdown-content {
     color: white;
 }
 
+label.error {
+    color: red;
+}
+
+.error {
+    border-color: red;
+}
+
 .dropdown>button:hover {
     color: white;
 }
@@ -89,7 +97,7 @@ main.content {
     -webkit-box-shadow: 0px 0px 64px -20px rgba(0, 0, 0, 0.36);
     -moz-box-shadow: 0px 0px 64px -20px rgba(0, 0, 0, 0.36);
     box-shadow: 0px 0px 64px -20px rgba(0, 0, 0, 0.36);
-    z-index: 0;
+    z-index: 1;
 }
 
 main.content .content-title {
@@ -127,18 +135,18 @@ main.content .filter-title h2 {
     font-size: 1.2rem;
 }
 
-.title-pack{
+.title-pack {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.icon-title{
+.icon-title {
     display: flex;
     align-items: center;
 }
 
-.subtitle{
+.subtitle {
     margin-left: 6rem;
 }
 
@@ -273,7 +281,8 @@ body.hidesidebar {
     background-color: #1976d2 !important;
 }
 
-.table td, .table th {
+.table td,
+.table th {
     border: 0px;
 }
 
@@ -300,7 +309,8 @@ table.dataTable tbody tr {
     border-radius: 50px;
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
     border-radius: 50px;
     color: white !important;
     background-color: #0a94a7 !important;
@@ -315,9 +325,43 @@ table.dataTable tbody tr {
     background: none;
 }
 
-.form-filter{
+.form-filter {
     display: flex;
     flex-basis: 1;
     justify-content: flex-end;
     align-items: flex-end;
+}
+
+.card-category {
+    font-size: 1.3rem;
+}
+
+.summary-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.summary-box {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    min-width: 200px;
+}
+
+.summary-box h3 {
+    margin-top: -.5rem;
+}
+
+.summary-box .icon {
+    font-size: 2rem;
+}
+
+.summary-box .title {
+    font-size: 1.5rem;
 }

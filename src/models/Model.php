@@ -37,7 +37,7 @@ class Model
 
     public function update()
     {
-        $sql = "UPDATE " . static::$tableName . " SET";
+        $sql  = "UPDATE " . static::$tableName . " SET";
         foreach (static::$columns as $col) {
             $sql .= " ${col} = " . static::getFormated($this->$col) . ",";
         }
@@ -46,9 +46,22 @@ class Model
         $id = Database::executeSQL($sql, static::$tableName);
     }
 
-    public static function getCount($filters = []){
+    public static function getCount($filters = [])
+    {
         $result = static::getResultFromSelect("count(*) as count", $filters);
         return $result->fetchObject()->count;
+    }
+    public static function get($filters = [], $columns = '*')
+    {
+        $objects = [];
+        $result = static::getResultFromSelect($columns, $filters);
+        if ($result) {
+            $class = get_called_class();
+            while ($row = $result->fetchObject()) {
+                array_push($objects, new $class($row));
+            }
+        }
+        return $objects;
     }
 
     public function __get($key)
@@ -107,7 +120,7 @@ class Model
         }
         $sql .= ';';
 
-        return $sql;
+        return ;
     }
 
     private static function getFormated($value)
@@ -117,8 +130,19 @@ class Model
             return "'$value'";
         } elseif (is_null($value)) {
             return "null";
-        } else{
+        } else {
             return number_format($value, 2, '.', '');
         }
     }
+    public function insert() {
+        $sql  = "INSERT INTO " . static::$tableName . " ("
+            . implode(",", static::$columns) . ") VALUES (";
+        foreach(static::$columns as $col) {
+            $sql .= static::getFormated($this->$col) . ",";
+        }
+        $sql[strlen($sql) - 1] = ')';
+        $id = Database::executeSQL($sql,static::$tableName);
+        $this->id = $id;
+    }
 }
+

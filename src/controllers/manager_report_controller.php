@@ -6,8 +6,8 @@ requireValidSession();
 $iActiveUserCount = User::getActiveUsersCount();
 $aAbsentUsers = WorkingHours::getAbsentUsers();
 
-$date = (new DateTime())->format("Y-m");
-$iTotalWorkedSeconds = WorkingHours::getTotalMonthlyWorkedTime($date[0], $date[2]);
+$rDate = (new DateTime())->format("Y-m");
+$iTotalWorkedSeconds = WorkingHours::getTotalMonthlyWorkedTime($rDate[0], $rDate[2]);
 $iTime = getTimeStringFromSeconds($iTotalWorkedSeconds);
 loadTemplateView('manager_report',[
     "iActiveUsersCount" => $iActiveUserCount,
