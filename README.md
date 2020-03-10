@@ -4,7 +4,7 @@ LUPE, Leved Up Ponto Eletrônico é um projeto de verificação de ponto eletrô
   
 ## Primeiro projeto com PHP
 
-Olá, este é o meu primeiro projeto realizado na linguagem PHP. Pretendo reaproveitar parte dos códigos para construção do meu TCC.
+Olá, este é um projeto realizado na linguagem PHP. Pretendo reaproveitar parte dos códigos para construção do meu TCC.
 
 **Obs:** Acabei adicionando algumas coisas ao projeto para deixar mais completo.
 
